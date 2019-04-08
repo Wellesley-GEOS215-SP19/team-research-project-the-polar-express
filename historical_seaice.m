@@ -1,26 +1,24 @@
-%% using this code to start to find historical sea ice patterns
+%% using this code to start to find historical sea ice patterns (1900-2005)
 
 %% uploading data
 
-seaice = netcdf.open('sit_OImon_ensemble_historical_190001-200512.nc', 'NOWRITE');
-seaice2 = netcdf.open('sit_OImon_CCSM4_historical_r1i1p1_190001-200512.nc', 'NOWRITE');
+%dataset info
+ncdisp('sit_OImon_ensemble_historical_190001-200512.nc');
 
-ncid = 'sit_OImon_ensemble_historical_190001-200512.nc';
-ncid1 = 'sit_OImon_CCSM4_historical_r1i1p1_190001-200512.nc';
-
-ncinfo('seaice');
-
-ncdisp('ncid');
+%read in whole thing
+seaice = ncread('sit_OImon_ensemble_historical_190001-200512.nc', 'sit'); %lon, lat, time
 
 %reading in variables
-lon = ncread('seaice', 'lon');
-whos seaice
-lat = ncread('seaice', 'lat');
-whos seaice
-time = ncread('seaice', 'time');
-whos seaice
-time_bnds = ncread('seaice', 'time_bnds');
-whos seaice
-sit = ncread('seaice', 'sit');
-whos seaice
+lon = ncread('sit_OImon_ensemble_historical_190001-200512.nc', 'lon');
+lat = ncread('sit_OImon_ensemble_historical_190001-200512.nc', 'lat');
+time = ncread('sit_OImon_ensemble_historical_190001-200512.nc', 'time');
+%sit = ncread('seaice', 'sit');
+
+year= time./365;
+
+
+%% figures
+
+
+
 
