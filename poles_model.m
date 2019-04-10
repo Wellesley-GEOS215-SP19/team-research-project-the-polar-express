@@ -12,20 +12,32 @@ timeyear= time./365
 
 %%
 marchs = NaN([size(lat, 1) size(lon, 1) 93]);
-vector= 3:12:1140 ;
-marchs= model(:,:,vector);
+mvector= 3:12:1140 ;
+marchs= model(:,:,mvector);
 %average all the marchs
 meanmarchs=mean(marchs,[1 2],'omitnan');
 meanmarchs1=squeeze(meanmarchs);
 % make a vector of the years
 years = 2006:2100;
+%septembers
+sep = NaN([size(lat, 1) size(lon, 1) 93]);
+svector= 9:12:1140 ;
+sep= model(:,:,svector);
+%average all the marchs
+meansep=mean(sep,[1 2],'omitnan');
+meansep1=squeeze(meansep);
 %% figure for marchs
-figure 1; clf
+figure ; clf
+subplot(1,2,1)
 plot(years,meanmarchs1)
-title("Average Ice Concentration")
+title("Average March Ice Concentration")
 xlabel("Year")
 ylabel("Average Sea Ice Concentration") 
-     
+subplot(1,2,2)
+plot(years,meansep1)
+title("Average September Ice Concentration")
+xlabel("Year")
+ylabel("Average Sea Ice Concentration") 
 %% figure from Jan 2006
 load coastlines
 figure('Color','w'); clf
