@@ -1,10 +1,7 @@
 %poles 
 %%modeled data 2006-2100
 %  CCSM4 at RCP 8.5
-
 % look at attributes
-ncdisp('projected_ice.nc')
-
 model=ncread('projected_ice.nc', 'sic');
 lat=ncread('projected_ice.nc', 'lat');
 lon=ncread('projected_ice.nc', 'lon');
@@ -15,8 +12,19 @@ timeyear= time./365
 
 %%
 marchs = NaN([size(lat, 1) size(lon, 1) 93]);
-vector= 3:12:1140
+vector= 3:12:1140 ;
 marchs= model(:,:,vector);
+%average all the marchs
+meanmarchs=mean(marchs,[1 2],'omitnan');
+meanmarchs1=squeeze(meanmarchs);
+% make a vector of the years
+years = 2006:2100;
+%% figure for marchs
+figure 1; clf
+plot(years,meanmarchs1)
+title("Average Ice Concentration")
+xlabel("Year")
+ylabel("Average Sea Ice Concentration") 
      
 %% figure from Jan 2006
 load coastlines
