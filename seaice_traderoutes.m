@@ -97,8 +97,16 @@ contourfm(lat, lon, model(:,:,9)','linecolor','none');
 colormap(cmocean('ice')); colorbar;
 title ('2006 September Percent Sea Ice Concentration')
 
-%% add coordinates to plot
+[lat,lon] = track2('gc',40.11674507,0.980677569, 57.13397867,-2.777878117)
 
+% add coordinates to plot
+%geoshow(40.11674507,0.980677569,'DisplayType','point','LineWidth',2, 'MarkerEdgeColor','r','Marker','o', 'MarkerSize',12);
+%geoshow(57.13397867,-2.777878117, 'DisplayType','point','LineWidth',2, 'MarkerEdgeColor','g','Marker','^', 'MarkerSize',12);
+%geoshow(lat,lon,'LineWidth',2,'Marker','none');
+
+%geoplot([40.11674507,0.980677569], [57.13397867,-2.777878117], 'Linewidth', 2)
+%text(40.11674507,0.980677569,'Port Stop 1',
+%'HorizontalAlignment', 'right', 'VerticalAlignment', 'bottom')
 
 
 
