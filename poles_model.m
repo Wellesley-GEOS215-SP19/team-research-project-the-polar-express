@@ -25,7 +25,52 @@ svector= 9:12:1140 ;
 sep= model(:,:,svector);
 %average all the marchs
 meansep=mean(sep,[1 2],'omitnan');
-meansep1=squeeze(meansep);
+modelsep86=squeeze(meansep);
+%% make a data set for shreya
+historical=ncread('historical.nc', 'sic');
+lat=ncread('historical.nc', 'lat');
+lon=ncread('historical.nc', 'lon');
+timeh= ncread('historical.nc', 'time');
+
+% make a vector of the years
+yearsh = 1900:2005;
+%septembers
+sephist = NaN([size(lat, 1) size(lon, 1) 106]);
+svector= 9:12:1272 ;
+sephist= historical(:,:,svector);
+%average all the marchs
+meansephist=mean(sephist,[1 2],'omitnan');
+historical2d=squeeze(meansephist);
+%%
+% same thing for rpc 2.6
+model26=ncread('RPc2.6.nc', 'sic');
+lat=ncread('RPc2.6.nc', 'lat');
+lon=ncread('RPc2.6.nc', 'lon');
+time= ncread('RPc2.6.nc', 'time');
+
+% make a vector of the years
+years = 2006:2100;
+%septembers
+sepmod = NaN([size(lat, 1) size(lon, 1) 93]);
+svector= 9:12:1140 ;
+sep26= model26(:,:,svector);
+%average all the marchs
+meansep26=mean(sep26,[1 2],'omitnan');
+meanmodel26=squeeze(meansep26);
+%%
+%mat2dataset(historical 2d);
+histyear= [historical2d yearsh']; 
+modelyear= [meanmodel26 years'];
+bothyear = [histyear; modelyear];
+add= NaN([1 106]);
+model86= [add'; modelsep86];
+
+allyear= [model86 bothyear];
+
+df1=mat2dataset(allyear, 'VarNames',{'SeaIce2_6', 'hist_SeaIce8_6', 'Year'});
+export(df1,'File','Hist_2.6model8.5.csv','Delimiter',',')
+%yearsh
+%meanmodel26 modelsep86
 %% figure for marchs
 figure ; clf
 subplot(1,2,1)
