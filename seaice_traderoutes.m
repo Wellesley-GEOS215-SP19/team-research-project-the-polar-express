@@ -85,7 +85,7 @@ title ('2006 March Percent Sea Ice Concentration')
 %figure(4)
 load coastlines
 figure('Color','w'); clf
-axesm('eqaazim','MapLatLimit',[50 90])
+axesm('eqaazim','MapLatLimit',[39 90])
 axis off
 framem on
 gridm on
@@ -97,17 +97,20 @@ contourfm(lat, lon, model(:,:,9)','linecolor','none');
 colormap(cmocean('ice')); colorbar;
 title ('2006 September Percent Sea Ice Concentration')
 
-[lat,lon] = track2('gc',40.11674507,0.980677569, 57.13397867,-2.777878117)
+%plotting points
 
-% add coordinates to plot
-%geoshow(40.11674507,0.980677569,'DisplayType','point','LineWidth',2, 'MarkerEdgeColor','r','Marker','o', 'MarkerSize',12);
-%geoshow(57.13397867,-2.777878117, 'DisplayType','point','LineWidth',2, 'MarkerEdgeColor','g','Marker','^', 'MarkerSize',12);
-%geoshow(lat,lon,'LineWidth',2,'Marker','none');
+northlats = [40.1167450700000 48.82682957 57.1339786700000 66.2225247900000 76.7458920900000 85.7208071100000 76.7941226000000 72.3186627100000 68.51242111 63.0099327200000 51.7108645400000 40.7184320800000];
+northlons = [0.980677569000000 -11.69970592 -2.77787811700000 23.2743067300000 65.4509795800000 98.5753209400000 122.740157700000 146.572205300000 -172.176549 165.301153400000 175.417468700000 179.473241800000];
 
-%geoplot([40.11674507,0.980677569], [57.13397867,-2.777878117], 'Linewidth', 2)
-%text(40.11674507,0.980677569,'Port Stop 1',
-%'HorizontalAlignment', 'right', 'VerticalAlignment', 'bottom')
+freelats = [34.4433816200000 42.8544039600000 48.8268295700000 53.3480742000000 63.4579651500000 81.4791046100000 91.4382701100000 89.8256688200000 77.4370393800000 68.5124211100000 60.7354007500000];
+freelons = [-10.5430441400000 -11.3106711900000 -11.6997059200000 -11.3818148500000 -6.38737350300000 11.7195746700000 39.9716716100000 144.822492100000 -177.428182200000 -172.176549000000 -167.083719900000];
 
+plotm([northlats northlons], 'Marker', '.', 'Color', 'yellow', 'MarkerSize', 20, 'Linewidth', 2)
+plotm([freelats freelons],'Marker', '.', 'Color', 'red', 'MarkerSize', 20, 'Linewidth', 2)
+
+%plotting great circle line
+%[latlin,lonlin] = track2('gc' ,40, 1, 41, 179);
+%plotm(latlin,lonlin, 'LineSpec', '-r.', 'LineWidth', 10)
 
 
 
