@@ -23,6 +23,6 @@ hold on;
 plot(c,a)
 hold on;
 plot(c,d)
-title('Percent Sea Ice Concentration Change Under RCP 2.6 & 8.5')
+title('Change in Sea Ice Concentration Under RCP 2.6 & 8.5')
 legend('RCP 2.6','RCP 8.5','Baseline (2006)')
         
